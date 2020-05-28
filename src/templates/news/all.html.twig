@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if news is empty %}
+        DB is empty
+        <br>
+        Try to <a href="{{ path('parse') }}">parse</a> at first and then come back.
+    {% else %}
+        <h1>News</h1>
+        <h2><a href="{{ path('parse') }}">Parse</a> again</h2>
+        <div>
+            {% for item in news %}
+                <div>
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.content|length > 200 ? item.content|slice(0, 200) ~ '...' : item.content }}</p>
+                    <div><a href="{{ path('show', {id: item.id}) }}">More...</a></div>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

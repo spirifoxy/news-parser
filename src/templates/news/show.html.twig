@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        {% if item is empty %}
+            <p>Article was not found.</p>
+        {% else %}
+            <h1>{{ item.title }}</h1>
+            {% if item.imageUrl is not empty %}
+                <img src="{{ item.imageUrl }}" alt="{{ item.title }}">
+            {% endif %}
+            <p>{{ item.content }}</p>
+        {% endif %}
+    </div>
+    <a href="{{ path('all') }}">Back</a>
+{% endblock %}
